@@ -19,8 +19,8 @@ Este proyecto está desarrollado en Angular 20 y muestra un listado de vehículo
 1. Clonar el repositorio:
 
 ```bash
-git clone <repo-url>
-cd <project-folder>
+git clone https://github.com/fguaidiaedu/parcial_vehiculos.git
+cd parcial_vehiculos
 ```
 
 2. Instalar dependencias:
