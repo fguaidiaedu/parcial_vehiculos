@@ -13,6 +13,8 @@ export class ListaVehiculo implements OnInit{
 
   vehiculos: Array<Vehiculo> = []; 
 
+  totalMarcas: { marca: string, cantidad: number }[] = [];
+
   constructor(private vehiculoService: VehiculoService) {}
   
   ngOnInit(): void {
@@ -22,7 +24,18 @@ export class ListaVehiculo implements OnInit{
   getVehiculos(): void {
     this.vehiculoService.getVehiculos().subscribe((vehiculos) => {
       this.vehiculos = vehiculos;
+      this.generarTotalMarcas();
     });
   }
 
+  private generarTotalMarcas(): void {
+    const resumen: { [marca: string]: number } = {};
+
+    this.vehiculos.forEach(v => {
+      resumen[v.marca] = (resumen[v.marca] || 0) + 1;
+    });
+
+    this.totalMarcas = Object.entries(resumen).map(([marca, cantidad]) => ({ marca, cantidad }));
+
+  }
 }
